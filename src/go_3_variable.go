@@ -34,7 +34,6 @@ func main() {
 
 	var f2 = int(123123)
 	fmt.Println("f2=", f2)
-
 	{
 		var g = 123123
 		fmt.Println("g=", g)
