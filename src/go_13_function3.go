@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+/**
+*@Description: 以用任意数量的参数调用。例如，fmt.Println 是一个常见的变参函数。
+*@Author: imi
+*@date: 2019/8/14
+ */
 func sum(nums ...int) {
 	fmt.Print(nums, " ")
 	total := 0
