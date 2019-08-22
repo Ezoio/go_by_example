@@ -7,6 +7,7 @@ type rect struct {
 	height int
 }
 
+//定义了area方法
 func (r *rect) area() int {
 	return r.height * r.width
 }
