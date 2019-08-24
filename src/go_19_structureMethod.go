@@ -17,5 +17,5 @@ func main() {
 		width:  3,
 		height: 4,
 	}
-	fmt.Println(r1.area())
+	fmt.Println("area=", r1.area())
 }
