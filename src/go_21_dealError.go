@@ -15,9 +15,12 @@ Go 语言的处理方式能清楚的知道哪个函数返回了错误，并能�
 */
 type errdev struct {
 	arg  int
-	prob int
+	prob string
 }
 
+func (e *errdev) Error() string {
+	return fmt.Sprintf("%d, %s", e.arg, &e.prob)
+}
 func err1(inx int) (int, error) {
 	if inx == 33 {
 		return -1, errors.New("errors:number=33")
@@ -25,7 +28,13 @@ func err1(inx int) (int, error) {
 		return inx, nil
 	}
 }
-
+func err2(inx int) (int, error) {
+	if inx == 3 {
+		return -1, &errdev{-1, "errors "}
+	} else {
+		return inx, nil
+	}
+}
 func main() {
 	for _, inx := range []int{3, 4, 5, 89, 33, 35} {
 		//注意在 if行内的错误检查代码，在 Go 中是一个普遍的用法。
@@ -35,4 +44,11 @@ func main() {
 			fmt.Println("something wrong:", r, e)
 		}
 	}
+
+	_, e := err2(31)
+	if ae, ok := e.(*errdev); ok {
+		fmt.Println(ae.arg)
+		fmt.Println(ae.prob)
+	}
+
 }
