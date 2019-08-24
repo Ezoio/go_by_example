@@ -5,6 +5,11 @@ import (
 	"math"
 )
 
+/**
+*@Description: 接口
+*@Author: imi
+*@date: 2019/8/24
+ */
 //几何接口
 type geometry interface {
 	area() float64

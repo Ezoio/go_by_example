@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+/**
+*@Description: 初识结构体
+*@Author: imi
+*@date: 2019/8/24
+ */
 type Person struct {
 	name  string
 	age   int

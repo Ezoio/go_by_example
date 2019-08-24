@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+/**
+*@Description: 结构体方法
+*@Author: imi
+*@date: 2019/8/24
+ */
 type rect struct {
 	width  int
 	height int
