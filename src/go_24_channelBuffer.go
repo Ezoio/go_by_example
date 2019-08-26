@@ -20,5 +20,4 @@ func main() {
 	fmt.Println(<-chanVar)
 	fmt.Println(<-chanVar)
 	//fmt.Println(<-chanVar)//fatal error: all goroutines are asleep - deadlock!
-
 }
