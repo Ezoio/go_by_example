@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /**
-*@Description: 轻量级线程：协城
+*@Description: 轻量级线程：协程
 *@Author: imi
 *@date: 2019/8/24
  */
