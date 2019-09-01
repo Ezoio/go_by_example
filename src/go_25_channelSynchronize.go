@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func worker(done chan bool) {
+func work(done chan bool) {
 	fmt.Println("working...")
 	time.Sleep(time.Second)
 	fmt.Println("done")
@@ -18,6 +18,6 @@ func worker(done chan bool) {
 }
 func main() {
 	done := make(chan bool, 1)
-	go worker(done)
+	go work(done)
 	fmt.Println(<-done)
 }
