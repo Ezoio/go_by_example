@@ -17,4 +17,11 @@ func main() {
 	sort.Strings(str)
 	fmt.Println(str)
 
+	arr := []int{3, 1, 4, 8, 0, 5}
+	sort.Ints(arr)
+	fmt.Println(arr)
+
+	s := sort.IntsAreSorted(arr)
+	fmt.Println(s)
+
 }
