@@ -46,7 +46,7 @@ func main() {
 	jsonStr := `{"Id":123,"Name":"123","Property":["abc","123"]}`
 	res := &JsonStu{}
 	if json.Unmarshal([]byte(jsonStr), res) == nil {
-		fmt.Println("res", res)
+		fmt.Println("res=", res)
 	}
 
 	//在上面的例子中，我们经常使用 byte 和 string 作为使用标准输出时数据和 JSON 表示之间的中间值。
