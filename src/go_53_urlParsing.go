@@ -37,6 +37,10 @@ func main() {
 	fmt.Println("Port=", u1.Port())
 	fmt.Println("RequestURI=", u1.RequestURI())
 	fmt.Println("String=", u1.String())
+
+	//要得到字符串中的 k=v 这种格式的查询参数，可以使用 RawQuery 函数。
+	//你也可以将查询参数解析为一个map。
+	//已解析的查询参数 map 以查询字符串为键，对应值字符串切片为值，所以如何只想得到一个键对应的第一个值，将索引位置设置为 [0] 就行了
 	fmt.Println(u1.RawQuery)
 	m, _ := url.ParseQuery(u1.RawQuery)
 	fmt.Println(m)
@@ -61,6 +65,7 @@ func main() {
 	fmt.Println("Port=", u2.Port())
 	fmt.Println("RequestURI=", u2.RequestURI())
 	fmt.Println("String=", u2.String())
+
 	m1, _ := url.ParseQuery(u2.RawQuery)
 	fmt.Println(m1)
 	fmt.Println(m1["acm"][0])
