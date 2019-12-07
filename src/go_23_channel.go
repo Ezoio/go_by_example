@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+	"sync"
+)
 
 /**
 *@Description:
@@ -9,14 +13,56 @@ import "fmt"
 *@date: 2019/8/24
 */
 func main() {
-	msg := make(chan string)
+	//msg := make(chan string)
+	//flag := make(chan bool)
+	//
+	//go func() {
+	//	msg <- "this message from a goroutine "
+	//	flag <- true
+	//}()
+	//
+	////m :=msg
+	////mm <- msg
+	//mm := <-msg
+	//fmt.Println(mm)
+	//for v := range flag{
+	//	fmt.Println(v)
+	//}
 
-	go func() {
-		msg <- "this message from a goroutine "
-	}()
-
-	//m :=msg
-	//mm <- msg
-	mm := <-msg
-	fmt.Println(mm)
+	//c := make(chan bool)//make(chan bool,1)是异步不阻塞的
+	//go func() {
+	//	fmt.Println("go go go")
+	//	<-c
+	//}()
+	//c <- true
+	test4CPUS()
 }
+
+func test4CPUS() {
+	//runtime.GOMAXPROCS(1)
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	//c := make(chan bool,10)
+	//c := make(chan bool,10)
+	wg := sync.WaitGroup{}
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go Counters(&wg, i)
+	}
+	wg.Wait()
+	//for i := 0; i < 10; i++ {
+	//	<-c
+	//}
+}
+
+func Counters(c *sync.WaitGroup, idx int) {
+	a := 1
+	for i := 0; i < 99999999; i++ {
+		a += i
+	}
+	fmt.Println(idx, a)
+	c.Done()
+}
+
+//10个goroutine 打印输出 问题
+//一种chan 10个缓存
+//第二种是同步包
