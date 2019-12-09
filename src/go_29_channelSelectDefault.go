@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -31,4 +33,34 @@ func main() {
 		fmt.Println("no activity")
 	}
 
+	fmt.Println("--------------------------------------------")
+	c1, c2 := make(chan int), make(chan string)
+	g := make(chan bool)
+	go func() {
+		for {
+			select {
+			case v, ok := <-c1:
+				if !ok {
+					g <- true
+					break
+				}
+				fmt.Println("c1", v)
+			case v, ok := <-c2:
+				if !ok {
+					g <- true
+					break
+				}
+				fmt.Println("c2", v)
+			}
+		}
+	}()
+
+	c1 <- 1111
+	c2 <- "AAAA"
+
+	c1 <- 222
+	c2 <- "BBB"
+	//close(c1)
+	close(c2)
+	<-g
 }
